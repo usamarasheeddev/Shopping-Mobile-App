@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Button, Image, TextInput } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
 
     return (
 
@@ -12,9 +13,10 @@ export default function Home({navigation}) {
             </Text>
 
             <Button title='Press the Button'
-            onPress={()=>navigation.navigate('About')}
+                onPress={() => navigation.navigate('About')}
             />
 
+            {/* <Ionicons name='home-outline' size={22} /> */}
         </View>
 
 
@@ -23,7 +25,7 @@ export default function Home({navigation}) {
 
 const styles = StyleSheet.create({
     flexContainer: {
-        flex:1,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     }
@@ -31,6 +33,6 @@ const styles = StyleSheet.create({
     button: {
         tintColor: 'red',
         padding: 5,
-        
+
     }
 })

@@ -1,17 +1,59 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableHighlight } from 'react-native'
 import React from 'react'
+import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
+import { Avatar } from 'react-native-paper';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
-export default function CuttomDrawr() {
+export default function CuttomDrawr(props) {
   return (
-    <View style={{flex:1}}>
-      <View style={{ flex: .2,backgroundColor:'red' }}>
-        <Text>one</Text>
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: .3 ,justifyContent:'center',alignItems:'center'}}>
+        <Avatar.Image size={78} source={require('../../ascets/images/profile.jpeg')} />
+
+        <Text style={{ color: 'white', textAlign: 'left', fontWeight:'bold',fontSize: 14, marginLeft: 20 }} >
+          Usama Rasheed
+        </Text>
+        <Text style={{ color: 'white', textAlign: 'left', fontSize: 12, marginLeft: 20 }} >
+          100 Followers
+        </Text>
       </View>
-      <View style={{ flex: .6,backgroundColor:'yellow' }}>
-        <Text>two</Text>
+      <View style={{ flex: .6 }}>
+
+        <DrawerContentScrollView {...props}>
+          <DrawerItemList {...props} />
+        </DrawerContentScrollView>
       </View>
-      <View style={{ flex: .2,backgroundColor:'pink' }}>
-        <Text>three</Text>
+      <View style={{ flex: .1, m: 2 }}>
+        <TouchableHighlight
+          onPress={() => alert('logout')}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
+
+            <AntDesign name='logout' size={18} color={'white'} />
+            <Text style={{ color: 'white', textAlign: 'left', fontSize: 14, marginLeft: 20 }}
+
+            >
+              Logout
+            </Text>
+
+          </View>
+        </TouchableHighlight>
+
+        <TouchableHighlight style={{ marginTop: 7 }}
+          onPress={() => alert('share')}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
+
+            <AntDesign name='sharealt' size={18} color={'white'} />
+            <Text style={{ color: 'white', textAlign: 'left', fontSize: 14, marginLeft: 20 }}
+
+            >
+              Share
+            </Text>
+
+          </View>
+        </TouchableHighlight>
+
       </View>
     </View>
   )

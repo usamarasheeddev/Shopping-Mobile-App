@@ -19,10 +19,12 @@ export default function Navigation() {
 
     
       
-      <Stack.Navigator initialRouteName='Home' >
+      <Stack.Navigator initialRouteName='HomeStack'
+      screenOptions={{headerShown:false}}
+      >
         <Stack.Screen name="About" component={About}
         />
-        <Stack.Screen name="Home" component={Home} 
+        <Stack.Screen name="HomeStack" component={Home} 
         options={{headerShown:false}}
         
         />
