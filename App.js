@@ -4,6 +4,9 @@ import { View, Text, StyleSheet, Button, Image, TextInput } from 'react-native'
 import Navigation from './src/Screens/Navigation'
 import { NavigationContainer } from '@react-navigation/native';
 import MyDrawer from './src/Drawer/MyDrawer';
+import AuthContextProvider from './src/context/AuthContext';
+import ProductsContextProvider from './src/context/ProductContext';
+import CartContextProvider from './src/context/CartContext';
 
 export default function App() {
 
@@ -11,12 +14,20 @@ export default function App() {
   return (
 
     <>
-      <NavigationContainer>
+      <AuthContextProvider>
+        <ProductsContextProvider>
+          <CartContextProvider>
 
-        {/* <Navigation /> */}
-        <MyDrawer/>
 
-      </NavigationContainer>
+            <NavigationContainer>
+
+              {/* <Navigation /> */}
+              <MyDrawer />
+
+            </NavigationContainer>
+          </CartContextProvider>
+        </ProductsContextProvider>
+      </AuthContextProvider>
     </>
   )
 
