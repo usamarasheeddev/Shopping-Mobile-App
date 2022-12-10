@@ -9,7 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import About from './DrawerScreens/About';
 import Settings from './DrawerScreens/Settings';
-
+import BottomTab from '../BottomTabs/BottomTab';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,13 +24,13 @@ export default function MyDrawer() {
         },
         drawerInactiveTintColor: 'white',
         drawerActiveTintColor: 'yellow',
-        // headerShown: false,
+        headerShown: false,
         
 
       }}
       drawerContent={props => <CustomDrawr {...props} />}
     >
-      <Drawer.Screen name="Home" component={Navigation}
+      <Drawer.Screen name="Home" component={BottomTab}
         options={{
 
           drawerIcon: ({ color }) => <AntDesign name="home" size={24} color={color} />

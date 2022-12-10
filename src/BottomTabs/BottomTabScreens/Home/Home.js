@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Button, Image, TextInput } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Search from '../../../Components/Inputs/Search'
 
 export default function Home({ navigation }) {
 
@@ -8,6 +9,7 @@ export default function Home({ navigation }) {
 
 
         <View style={styles.flexContainer} >
+            <Search/>
             <Text>
                 Home screen
             </Text>
@@ -26,7 +28,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
     flexContainer: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center'
     }
     ,

@@ -7,13 +7,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 export default function CuttomDrawr(props) {
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: .3 ,justifyContent:'center',alignItems:'center'}}>
+      <View style={{ flex: .3, justifyContent: 'center', alignItems: 'center' }}>
         <Avatar.Image size={78} source={require('../../ascets/images/profile.jpeg')} />
 
-        <Text style={{ color: 'white', textAlign: 'left', fontWeight:'bold',fontSize: 14, marginLeft: 20 }} >
+        <Text style={{ color: 'white', textAlign: 'right', fontWeight: 'bold', fontSize: 14 }} >
           Usama Rasheed
         </Text>
-        <Text style={{ color: 'white', textAlign: 'left', fontSize: 12, marginLeft: 20 }} >
+        <Text style={{ color: 'white', textAlign: 'left', fontSize: 12 }} >
           100 Followers
         </Text>
       </View>
