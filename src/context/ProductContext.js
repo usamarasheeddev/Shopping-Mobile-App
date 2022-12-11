@@ -1,9 +1,9 @@
 import React, { useContext, useState, createContext } from 'react'
-// import shopProducts from '../data'
+import shopProducts from '../data'
 
 const ProductsContext = createContext()
 export default function ProductsContextProvider({ children }) {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState(shopProducts)
     return (
         <ProductsContext.Provider value={{ products, setProducts }}>
             {children}

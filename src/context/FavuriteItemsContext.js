@@ -8,13 +8,14 @@ import shopProducts from '../data';
 export default function FavuriteItemsContextProvider({ children }) {
     const [products, setProducts] = React.useState(shopProducts)
     const [favuriteItem, setFavuriteItem] = React.useState([])
+    const [newFavItem, setNewFavItem] = React.useState(false)
 
     //SET FAVURITE ITEM
 
 
 
     const addFavuriteItem = async (id) => {
-
+        setNewFavItem(true)
         !favuriteItem.find((elem) => elem.id === id) ? setFavuriteItem(
             s => ([...s, { id }])) : null
 
@@ -34,7 +35,7 @@ export default function FavuriteItemsContextProvider({ children }) {
 
 
     return (
-        <FavuriteItemContext.Provider value={{ favuriteItem, setFavuriteItem, addFavuriteItem }}>
+        <FavuriteItemContext.Provider value={{ favuriteItem, setFavuriteItem, addFavuriteItem, newFavItem, setNewFavItem }}>
             {children}
         </FavuriteItemContext.Provider>
     )

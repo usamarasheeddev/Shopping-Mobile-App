@@ -1,40 +1,113 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Button, Image, TextInput } from 'react-native'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { View, Text, ScrollView, TouchableWithoutFeedback, TouchableHighlight, StyleSheet, Button, Image } from 'react-native'
+import React from 'react'
+import { useAuthContext } from '../../../context/AuthContext'
+import { useProductsContext } from '../../../context/ProductContext'
+import { useFavuriteItemsContext } from '../../../context/FavuriteItemsContext'
+import { styles } from './styles'
+import { IconButton } from 'react-native-paper'
 import Search from '../../../Components/Inputs/Search'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useCartContext } from '../../../context/CartContext'
+// import { MD2Colors } from 'react-native-paper'
 
 export default function Home({ navigation }) {
+    const { isAuthenticated, dispatch } = useAuthContext()
+    // const [isliked, setIsLiked] = React.useState(false)
+    const { products, setProducts } = useProductsContext()
+    const { addFavuriteItem, setNewFavItem } = useFavuriteItemsContext()
+    const {addToCart}=useCartContext()
+
+    //SET FAVURITE ITEM
+    const handleFavurite = (id) => {
+        // setNewFavItem(true)
+
+        setProducts(
+
+            products.map((item) => item.id == id ? { ...item, isLiked: !item.isLiked } : item)
+        )
+
+        addFavuriteItem(id)
+
+    }
+
+
+
+    // console.log(auth().currentUser.uid)
+    const handleLogout = () => {
+        console.log(isAuthenticated)
+        // auth().signOut()
+        //     .then(() => {
+        //         dispatch({ type: "LOGOUT" })
+        //     })
+        //     .catch((err) => {
+        //         console.error(err)
+        //         alert("Something went wrong")
+        //     })
+    }
+
 
     return (
+        <ScrollView >
+            <Search />
+            <View style={styles.flexContainer}>
+                {/* <View style={{ width: "100%" }}>
+                    <Button
+                        title='logout'
+                        onPress={() => handleLogout()}
+                    />
+                </View> */}
+                {
+                    //PRODUCT MAP FUNCTION
+                    products.map((item) => {
+                        return <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('ProductDetails', { item })}>
+                            <View style={[styles.box, styles.shadowProp]}>
+
+                                <IconButton
+                                    icon={!item.isLiked ? "heart-outline" : "heart"}
+                                    iconColor={'red'}
+                                    size={20}
+                                    onPress={() => handleFavurite(item.id)}
+                                    style={{ position: 'absolute', zIndex: 1, top: -5, left: 105 }}
+                                />
+                                <IconButton
+                                    icon={ 'cart-plus'}
+                                    iconColor={'black'}
+                                    size={20}
+                                    onPress={() => addToCart(item)}
+                                    style={{ position: 'absolute', zIndex: 1, top: 130,bottom:0, left: 0,backgroundColor:'white', }}
+                                />
+
+                                {/* <MaterialCommunityIcons
+                                    name='cart-plus'
+                                    size={20}
+
+                                /> */}
+                                {/* <TouchableHighlight>
+                                </TouchableHighlight> */}
+
+                                {/* //PRODUCT iMAGE */}
+                                <Image
+                                    source={{
+                                        uri: item.url
+                                    }}
+                                    style={{ width: 148, borderRadius: 20, height: 180, objectFit: "cover" }}
+
+                                />
+                                <View style={styles.textBox}>
+                                    <Text>{item.title}</Text>
+                                    <Text>${item.price}</Text>
+                                </View>
 
 
-        <View style={styles.flexContainer} >
-            <Search/>
-            <Text>
-                Home screen
-            </Text>
+                            </View>
 
-            <Button title='Press the Button'
-                onPress={() => navigation.navigate('About')}
-            />
-
-            {/* <Ionicons name='home-outline' size={22} /> */}
-        </View>
+                        </TouchableWithoutFeedback>
+                    })
+                }
+            </View>
 
 
+
+        </ScrollView>
     )
 }
-
-const styles = StyleSheet.create({
-    flexContainer: {
-        flex: 1,
-        // justifyContent: 'center',
-        alignItems: 'center'
-    }
-    ,
-    button: {
-        tintColor: 'red',
-        padding: 5,
-
-    }
-})

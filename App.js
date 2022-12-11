@@ -7,6 +7,7 @@ import MyDrawer from './src/Drawer/MyDrawer';
 import AuthContextProvider from './src/context/AuthContext';
 import ProductsContextProvider from './src/context/ProductContext';
 import CartContextProvider from './src/context/CartContext';
+import FavuriteItemsContextProvider from './src/context/FavuriteItemsContext';
 
 export default function App() {
 
@@ -17,14 +18,17 @@ export default function App() {
       <AuthContextProvider>
         <ProductsContextProvider>
           <CartContextProvider>
+            <FavuriteItemsContextProvider>
 
 
-            <NavigationContainer>
+              <NavigationContainer>
 
-              {/* <Navigation /> */}
-              <MyDrawer />
+                {/* <Navigation /> */}
+                <MyDrawer />
 
-            </NavigationContainer>
+              </NavigationContainer>
+
+            </FavuriteItemsContextProvider>
           </CartContextProvider>
         </ProductsContextProvider>
       </AuthContextProvider>

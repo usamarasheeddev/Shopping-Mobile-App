@@ -5,10 +5,11 @@ const CartContext = createContext()
 let isEmpty = true
 export default function CartContextProvider({ children }) {
     const [cartItems, setCartItems] = useState([])
+    const [newItem, setNewItem] = React.useState(false)
 
 
     const addToCart = (item) => {
-
+        setNewItem(true)
         const exist = cartItems.find((elem) => elem.id === item.id)
 
         console.log(cartItems)
@@ -56,8 +57,8 @@ export default function CartContextProvider({ children }) {
 
     return (
         <CartContext.Provider value={{
-            cartItems, setCartItems, addToCart,
-            removeItem, incrimentQnt, decrimentQnt
+            cartItems, newItem, setNewItem, setCartItems, addToCart,
+            removeItem, incrimentQnt, decrimentQnt,
         }}>
             {children}
         </CartContext.Provider>

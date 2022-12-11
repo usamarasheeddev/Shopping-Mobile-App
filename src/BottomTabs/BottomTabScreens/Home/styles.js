@@ -19,6 +19,7 @@ export const styles=StyleSheet.create({
         marginTop: 15,
         // padding: 6,
         borderColor: "#4e484f",
+        position:'relative'
         // borderWidth: 1,
         // boxShadow:'#4e484f',
     
