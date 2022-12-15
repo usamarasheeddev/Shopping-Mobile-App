@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableWithoutFeedback, Image } from 'react-native'
+import { View, Text, ScrollView, TouchableWithoutFeedback, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { IconButton, MD3Colors } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
@@ -8,10 +8,10 @@ import { useFavuriteItemsContext } from '../../../context/FavuriteItemsContext';
 
 export default function FavuriteItems({ navigation }) {
     const { products, setProducts } = useProductsContext()
-    const { setNewItem } = useFavuriteItemsContext()
+    const { favuriteItem, setNewItem } = useFavuriteItemsContext()
 
     const handleFavurite = (id) => {
-        
+
         setProducts(
 
             products.map((item) => item.id == id ? { ...item, isLiked: !item.isLiked } : item)
@@ -25,40 +25,52 @@ export default function FavuriteItems({ navigation }) {
 
 
     return (
-        <ScrollView>
-            <View style={styles.flexContainer}>
-                {products.filter(item => item.isLiked == true).map((item) => {
-                    return <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('ProductDetails', { item })}>
-                        <View style={[styles.box, styles.shadowProp]}>
+        <>
+            {favuriteItem.length === 0 ?
+                <View>
+                    <Text style={{ fontWeight: 'bold', textAlign: 'center', marginTop: 300 }}
+                    >No Item to show...!</Text>
+                    <View style={{ marginTop: 10, alignItems: "center" }}>
 
-                            <IconButton
-                                icon={!item.isLiked ? "heart-outline" : "heart"}
-                                iconColor={MD3Colors.error50}
-                                size={20}
-                                onPress={() => handleFavurite(item.id)}
-                                style={{ position: 'absolute', zIndex: 1, top: -5, left: 105 }}
-                            />
-                            {/* //PRODUCT iMAGE */}
-                            <Image
-                                source={{
-                                    uri: item.url
-                                }}
-                                style={{ width: 148, borderRadius: 20, height: 180, objectFit: "cover" }}
+                    </View>
 
-                            />
-                            <View style={styles.textBox}>
-                                <Text>{item.title}</Text>
-                                <Text>${item.price}</Text>
-                            </View>
+                </View>
+
+                : <ScrollView>
+                    <View style={styles.flexContainer}>
+                        {products.filter(item => item.isLiked == true).map((item) => {
+                            return <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('ProductDetails', { item })}>
+                                <View style={[styles.box, styles.shadowProp]}>
+
+                                    <IconButton
+                                        icon={!item.isLiked ? "heart-outline" : "heart"}
+                                        iconColor={MD3Colors.error50}
+                                        size={20}
+                                        onPress={() => handleFavurite(item.id)}
+                                        style={{ position: 'absolute', zIndex: 1, top: -5, left: 105 }}
+                                    />
+                                    {/* //PRODUCT iMAGE */}
+                                    <Image
+                                        source={{
+                                            uri: item.url
+                                        }}
+                                        style={{ width: 148, borderRadius: 20, height: 180, objectFit: "cover" }}
+
+                                    />
+                                    <View style={styles.textBox}>
+                                        <Text>{item.title}</Text>
+                                        <Text>${item.price}</Text>
+                                    </View>
 
 
-                        </View>
+                                </View>
 
-                    </TouchableWithoutFeedback>
-                })
-                }
-            </View>
-        </ScrollView>
+                            </TouchableWithoutFeedback>
+                        })
+                        }
+                    </View>
+                </ScrollView>
+            }</>
 
     )
 }

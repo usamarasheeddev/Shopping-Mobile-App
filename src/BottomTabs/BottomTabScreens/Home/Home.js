@@ -8,6 +8,7 @@ import { IconButton } from 'react-native-paper'
 import Search from '../../../Components/Inputs/Search'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useCartContext } from '../../../context/CartContext'
+import SnackNotification from '../../../Components/SnackBar/SnackNotification'
 // import { MD2Colors } from 'react-native-paper'
 
 export default function Home({ navigation }) {
@@ -15,7 +16,8 @@ export default function Home({ navigation }) {
     // const [isliked, setIsLiked] = React.useState(false)
     const { products, setProducts } = useProductsContext()
     const { addFavuriteItem, setNewFavItem } = useFavuriteItemsContext()
-    const {addToCart}=useCartContext()
+    const { addToCart } = useCartContext()
+
 
     //SET FAVURITE ITEM
     const handleFavurite = (id) => {
@@ -30,32 +32,31 @@ export default function Home({ navigation }) {
 
     }
 
+    const toastRef = React.useRef(null)
+    React.useEffect(()=>{
+console.log(toastRef.current)
+    },[toastRef])
 
 
-    // console.log(auth().currentUser.uid)
-    const handleLogout = () => {
-        console.log(isAuthenticated)
-        // auth().signOut()
-        //     .then(() => {
-        //         dispatch({ type: "LOGOUT" })
-        //     })
-        //     .catch((err) => {
-        //         console.error(err)
-        //         alert("Something went wrong")
-        //     })
+    const triggerToast = () => {
+        toastRef.current
+        console.log(toastRef.current)
     }
 
 
     return (
         <ScrollView >
             <Search />
+
+            <SnackNotification ref={toastRef} />
+
             <View style={styles.flexContainer}>
-                {/* <View style={{ width: "100%" }}>
+                <View style={{ width: "100%" }}>
                     <Button
                         title='logout'
-                        onPress={() => handleLogout()}
+                        onPress={() => triggerToast()}
                     />
-                </View> */}
+                </View>
                 {
                     //PRODUCT MAP FUNCTION
                     products.map((item) => {
@@ -70,11 +71,15 @@ export default function Home({ navigation }) {
                                     style={{ position: 'absolute', zIndex: 1, top: -5, left: 105 }}
                                 />
                                 <IconButton
-                                    icon={ 'cart-plus'}
+                                    icon={'cart-plus'}
                                     iconColor={'black'}
                                     size={20}
-                                    onPress={() => addToCart(item)}
-                                    style={{ position: 'absolute', zIndex: 1, top: 130,bottom:0, left: 0,backgroundColor:'white', }}
+                                    onPress={() => {
+                                        addToCart(item)
+
+
+                                    }}
+                                    style={{ position: 'absolute', zIndex: 1, top: 130, bottom: 0, left: 0, backgroundColor: 'rgba(247, 247, 247, 0.69)', }}
                                 />
 
                                 {/* <MaterialCommunityIcons
@@ -105,8 +110,8 @@ export default function Home({ navigation }) {
                     })
                 }
             </View>
-
-
+            {/* TOAST REF */}
+            {/* <SnackNotification ref={toastRef} /> */}
 
         </ScrollView>
     )

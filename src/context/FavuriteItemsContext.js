@@ -6,7 +6,6 @@ import shopProducts from '../data';
 
 // let favItems = []
 export default function FavuriteItemsContextProvider({ children }) {
-    const [products, setProducts] = React.useState(shopProducts)
     const [favuriteItem, setFavuriteItem] = React.useState([])
     const [newFavItem, setNewFavItem] = React.useState(false)
 
