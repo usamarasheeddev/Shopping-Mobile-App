@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     header: {
         height: 60,
-        width:"100%",
+        width: "100%",
         // backgroundColor: 'yellow',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         // borderBottomWidth:1,
         // left:150
     }, button: {
-        backgroundColor: "blue",
+        // backgroundColor: "blue",
         // height:20,
         width: 120,
         textAlign: 'center',
@@ -26,11 +26,11 @@ export const styles = StyleSheet.create({
 
     cartItem: {
 
-        height: 130,
+        height: 80,
         flexDirection: 'row',
         alignItems: "center",
-        padding: 12,
-        marginTop:3,
+        padding: 8,
+        marginTop: 3,
         // borderBottomWidth: 1,
         // borderBottomColor: '#ccc5b9'
     },
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     },
     productTitle: {
         width: 230,
-        height: 140,
+        height: 110,
         padding: 13,
         flexDirection: 'column',
         justifyContent: 'space-around',
@@ -61,9 +61,17 @@ export const styles = StyleSheet.create({
         // borderColor: 'black',
         // borderWidth: 1,
         height: 30,
-        fontSize:30,
-        backgroundColor:'#fee440',
+        fontSize: 30,
         borderRadius: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 1,
 
     },
     btnFont: {
@@ -74,19 +82,19 @@ export const styles = StyleSheet.create({
     },
     cross: {
         position: "absolute",
-        right:5,
-        bottom:20
+        right: -10,
+        bottom: 9,
         // left: 320,
-        // top: 10
-    },text:{
-        
+
+    }, text: {
+
     },
 
 
 
-    inputLabel:{
-        fontSize:16,
-        padding:5,
-        marginLeft:10
+    inputLabel: {
+        fontSize: 16,
+        padding: 5,
+        marginLeft: 10
     }
 })

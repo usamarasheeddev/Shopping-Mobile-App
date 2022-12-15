@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableWithoutFeedback, TouchableHighlight, StyleSheet, Button, Image } from 'react-native'
+import { View, Text, ScrollView, TouchableWithoutFeedback, TouchableHighlight, StyleSheet, Button, ToastAndroid, Image } from 'react-native'
 import React from 'react'
 import { useAuthContext } from '../../../context/AuthContext'
 import { useProductsContext } from '../../../context/ProductContext'
@@ -32,31 +32,23 @@ export default function Home({ navigation }) {
 
     }
 
-    const toastRef = React.useRef(null)
-    React.useEffect(()=>{
-console.log(toastRef.current)
-    },[toastRef])
-
-
-    const triggerToast = () => {
-        toastRef.current
-        console.log(toastRef.current)
-    }
-
+//show toast message
+    const showToast = (message) => {
+        ToastAndroid.show(message, ToastAndroid.SHORT);
+    };
 
     return (
         <ScrollView >
             <Search />
 
-            <SnackNotification ref={toastRef} />
 
             <View style={styles.flexContainer}>
-                <View style={{ width: "100%" }}>
+                {/* <View style={{ width: "100%" }}>
                     <Button
                         title='logout'
-                        onPress={() => triggerToast()}
+                        onPress={() => showToast()}
                     />
-                </View>
+                </View> */}
                 {
                     //PRODUCT MAP FUNCTION
                     products.map((item) => {
@@ -76,6 +68,7 @@ console.log(toastRef.current)
                                     size={20}
                                     onPress={() => {
                                         addToCart(item)
+                                        showToast('Added to cart')
 
 
                                     }}

@@ -53,7 +53,7 @@ export default function UserCart({ navigation }) {
                                     source={{
                                         uri: item.url
                                     }}
-                                    style={{ borderRadius: 20, height: 110, width: 100, resizeMode: 'contain', }}
+                                    style={{ borderRadius: 20, height: 70, width: 100, resizeMode: 'contain', }}
 
                                 />
 
