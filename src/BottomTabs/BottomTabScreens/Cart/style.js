@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
         width: 230,
         height: 110,
         padding: 13,
+        overflow:'hidden',
         flexDirection: 'column',
         justifyContent: 'space-around',
 
@@ -60,25 +61,19 @@ export const styles = StyleSheet.create({
         width: 40,
         // borderColor: 'black',
         // borderWidth: 1,
+        backgroundColor:'white',
         height: 30,
         fontSize: 30,
-        borderRadius: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 1,
+        borderRadius: 30,
+        alignItems:'center',
+        justifyContent:'center'
 
     },
     btnFont: {
         fontSize: 18,
         color: "black",
         textAlign: 'center',
-        padding: 1
+        // padding: 1
     },
     cross: {
         position: "absolute",

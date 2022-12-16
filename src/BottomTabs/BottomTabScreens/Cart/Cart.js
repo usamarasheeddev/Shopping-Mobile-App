@@ -90,7 +90,7 @@ export default function UserCart({ navigation }) {
                             </View>
                             <TouchableOpacity onPress={() => removeItem(item)}>
                                 <View style={styles.cross}>
-                                    <Icon name='cross' size={26} color={"red"} />
+                                    <Icon name='cross' size={22} color={'primary'} />
                                 </View>
                             </TouchableOpacity>
                         </Surface>

@@ -52,14 +52,17 @@ export default function Home({ navigation }) {
                 {
                     //PRODUCT MAP FUNCTION
                     products.map((item) => {
-                        return <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('ProductDetails', { item })}>
+                        return <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('Productscreen', { item })}>
                             <View style={[styles.box, styles.shadowProp]}>
 
                                 <IconButton
                                     icon={!item.isLiked ? "heart-outline" : "heart"}
                                     iconColor={'red'}
                                     size={20}
-                                    onPress={() => handleFavurite(item.id)}
+                                    onPress={() =>{
+                                         handleFavurite(item.id)
+                                         !item.isLiked ? showToast('Item Liked') : showToast('Item Unliked')
+                                        }}
                                     style={{ position: 'absolute', zIndex: 1, top: -5, left: 105 }}
                                 />
                                 <IconButton

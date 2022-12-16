@@ -6,6 +6,7 @@ import Cart from './BottomTabScreens/Cart/Cart';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Navigation from '../Screens/Navigation';
 import { useCartContext } from '../context/CartContext';
+import ProductScreen from './BottomTabScreens/Product Screen/ProductScreen';
 import { useFavuriteItemsContext } from '../context/FavuriteItemsContext';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -54,6 +55,7 @@ export default function BottomTab() {
                 }}
 
             />
+
 
         </Tab.Navigator>
     )
