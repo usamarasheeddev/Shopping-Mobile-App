@@ -10,10 +10,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import About from './DrawerScreens/About';
 import Settings from './DrawerScreens/Settings';
 import BottomTab from '../BottomTabs/BottomTab';
+import { useAuthContext } from '../context/AuthContext';
 
 const Drawer = createDrawerNavigator();
 
 export default function MyDrawer() {
+  const { dispatch } = useAuthContext()
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -25,7 +27,7 @@ export default function MyDrawer() {
         drawerInactiveTintColor: 'white',
         drawerActiveTintColor: 'yellow',
         headerShown: false,
-        
+
 
       }}
       drawerContent={props => <CustomDrawr {...props} />}

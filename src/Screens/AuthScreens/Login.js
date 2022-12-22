@@ -6,7 +6,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Formik } from 'formik';
 import * as Yup from 'yup'
 import Input from '../../Components/Inputs/Input'
-
+import { useAuthContext } from '../../context/AuthContext';
 
 
 const validationSchema = Yup.object({
@@ -20,6 +20,7 @@ const validationSchema = Yup.object({
 export default function SignUp({ navigation }) {
     const theme = useTheme()
     const [text, setText] = React.useState('')
+    const {dispatch}=useAuthContext()
     return (
 
 
@@ -58,7 +59,10 @@ export default function SignUp({ navigation }) {
                         />
 
                         <View style={{ marginTop: 30, borderRadius: 50, width: 200, alignSelf: 'center' }}>
-                            <Button onPress={handleSubmit}
+                            <Button onPress={()=>{
+                                handleSubmit
+                            dispatch({type:"LOGIN"})
+                            }}
                                 color={theme.colors.primary}
                                 title="Login"
                             />

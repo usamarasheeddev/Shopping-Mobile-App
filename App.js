@@ -34,10 +34,10 @@ export default function App() {
                 <NavigationContainer>
 
                   {/* <Navigation /> */}
-                  {/* <MyDrawer /> */}
+                  <MyDrawer />
                   {/* <Login /> */}
                   {/* <SignUp /> */}
-                  <AuthScreenNavigation/>
+                  {/* <AuthScreenNavigation/> */}
 
                 </NavigationContainer>
 

@@ -3,10 +3,12 @@ import React from 'react'
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
 import { Avatar } from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { useAuthContext } from '../context/AuthContext';
 
 
 
 export default function CuttomDrawr(props) {
+  const {dispatch}=useAuthContext()
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: .3, justifyContent: 'center', alignItems: 'center' }}>
@@ -27,9 +29,9 @@ export default function CuttomDrawr(props) {
       </View>
       <View style={{ flex: .1, m: 2 }}>
         <TouchableHighlight
-          onPress={() => alert('logout')}
+          onPress={() => dispatch({type:'LOGOUT'})}
         >
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20,marginBottom:10 }}>
 
             <AntDesign name='logout' size={18} color={'white'} />
             <Text style={{ color: 'white', textAlign: 'left', fontSize: 14, marginLeft: 20 }}
@@ -44,7 +46,7 @@ export default function CuttomDrawr(props) {
         <TouchableHighlight style={{ marginTop: 7 }}
           onPress={() => alert('share')}
         >
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20,marginBottom:20 }}>
 
             <AntDesign name='sharealt' size={18} color={'white'} />
             <Text style={{ color: 'white', textAlign: 'left', fontSize: 14, marginLeft: 20 }}

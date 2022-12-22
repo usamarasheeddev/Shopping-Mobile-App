@@ -14,7 +14,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function BottomTab() {
     const { newFavItem, setNewFavItem } = useFavuriteItemsContext()
-    const theme=useTheme()
+    const theme = useTheme()
     return (
         <Tab.Navigator
             // activeColor="#f0edf16"
