@@ -9,6 +9,8 @@ import ProductsContextProvider from './src/context/ProductContext';
 import CartContextProvider from './src/context/CartContext';
 import FavuriteItemsContextProvider from './src/context/FavuriteItemsContext';
 import Login from './src/Screens/AuthScreens/Login';
+import SignUp from './src/Screens/AuthScreens/SignUp';
+import AuthScreenNavigation from './src/Screens/AuthScreens/AuthScreenNavigation';
 
 
 export default function App() {
@@ -17,7 +19,7 @@ export default function App() {
     // colors: {
     //     primary: 'blue',
     // },
-});
+  });
 
   return (
 
@@ -33,7 +35,9 @@ export default function App() {
 
                   {/* <Navigation /> */}
                   {/* <MyDrawer /> */}
-                  <Login />
+                  {/* <Login /> */}
+                  {/* <SignUp /> */}
+                  <AuthScreenNavigation/>
 
                 </NavigationContainer>
 

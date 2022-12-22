@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
 })
 
 
-export default function Login() {
+export default function SignUp({ navigation }) {
     const theme = useTheme()
     const [text, setText] = React.useState('')
     return (
@@ -33,34 +33,47 @@ export default function Login() {
                 }}
             >
                 {({ handleChange, touched, errors, handleBlur, handleSubmit, values }) => (
-                    <View style={{width:'100%'}}>
+                    <View style={{ width: '100%' }}>
                         <Input
+                            label='Email'
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
-                            placeholder='Email'
+                            // placeholder='Email'
                             autoCapitalize='none'
                             keyboardType='email-address'
                             style={{ backgroundColor: 'white' }}
                             error={touched.email && errors.email}
                         />
                         <Input
+                            label='Password'
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}
-                            placeholder='Password'
+                            // placeholder='Password'
                             secureTextEntry
                             autoCapitalize='none'
                             error={touched.password && errors.password}
                             style={{ backgroundColor: 'white', marginTop: 15 }}
                         />
 
-                        <View style={{ marginTop: 30, borderRadius: 50,width:200,alignSelf:'center' }}>
+                        <View style={{ marginTop: 30, borderRadius: 50, width: 200, alignSelf: 'center' }}>
                             <Button onPress={handleSubmit}
                                 color={theme.colors.primary}
-                                title="Login" 
-                                />
-                               
+                                title="Login"
+                            />
+
+                        </View>
+
+                        <View >
+                            <Text style={{ textAlign: "center", fontSize: 15, marginTop: 50, color: `${theme.colors.primary}` }}
+                                onPress={() => navigation.navigate('SignUp', {
+                                    screen: 'SignUp',
+                                    initial: false,
+                                })}
+                            >
+
+                                Don't have an account?</Text>
                         </View>
                     </View>
                 )}
