@@ -6,7 +6,7 @@ import Cart from './BottomTabScreens/Cart/Cart';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Navigation from '../Screens/Navigation';
 import { useCartContext } from '../context/CartContext';
-import ProductScreen from './BottomTabScreens/Product Screen/ProductScreen';
+import { useTheme } from 'react-native-paper';
 import { useFavuriteItemsContext } from '../context/FavuriteItemsContext';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -14,6 +14,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function BottomTab() {
     const { newFavItem, setNewFavItem } = useFavuriteItemsContext()
+    const theme=useTheme()
     return (
         <Tab.Navigator
             // activeColor="#f0edf16"
@@ -23,7 +24,7 @@ export default function BottomTab() {
             }}
 
             barStyle={{
-                backgroundColor: '#694fad',
+                backgroundColor: theme.colors.primary,
                 bottom: -20
             }}
         >

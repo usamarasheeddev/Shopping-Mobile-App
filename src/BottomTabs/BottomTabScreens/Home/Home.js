@@ -8,7 +8,7 @@ import { IconButton } from 'react-native-paper'
 import Search from '../../../Components/Inputs/Search'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useCartContext } from '../../../context/CartContext'
-import SnackNotification from '../../../Components/SnackBar/SnackNotification'
+import { useTheme } from 'react-native-paper';
 // import { MD2Colors } from 'react-native-paper'
 
 export default function Home({ navigation }) {
@@ -17,6 +17,7 @@ export default function Home({ navigation }) {
     const { products, setProducts } = useProductsContext()
     const { addFavuriteItem, setNewFavItem } = useFavuriteItemsContext()
     const { addToCart } = useCartContext()
+    const theme=useTheme()
 
 
     //SET FAVURITE ITEM

@@ -4,6 +4,8 @@ import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawe
 import { Avatar } from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
+
+
 export default function CuttomDrawr(props) {
   return (
     <View style={{ flex: 1 }}>

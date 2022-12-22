@@ -1,21 +1,14 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import Home from '../BottomTabs/BottomTabScreens/Home/Home'
 import About from './About'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-
+import Home from '../BottomTabs/BottomTabScreens/Home/Home';
+import ProductScreen from './ProductScreen';
 const Stack = createNativeStackNavigator();
 
 
 export default function Navigation() {
   return (
-
-    // <View style={styles.flexContainer}>
-
-    // <Home />
-
-    // </ View >
 
 
 
@@ -24,10 +17,8 @@ export default function Navigation() {
     >
       <Stack.Screen name="About" component={About}
       />
-      <Stack.Screen name="HomeStack" component={Home}
-        options={{ headerShown: false }}
-
-      />
+      <Stack.Screen name="HomeStack" component={Home} />
+      <Stack.Screen name="Productscreen" component={ProductScreen} />
     </Stack.Navigator>
 
   )
