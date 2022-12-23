@@ -4,11 +4,13 @@ import { IconButton, MD3Colors } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { useProductsContext } from '../../../context/ProductContext';
 import { useFavuriteItemsContext } from '../../../context/FavuriteItemsContext';
+import { useTheme } from 'react-native-paper';
 
 
 export default function FavuriteItems({ navigation }) {
     const { products, setProducts } = useProductsContext()
     const { favuriteItem, setNewItem } = useFavuriteItemsContext()
+    const theme=useTheme()
 
     const handleFavurite = (id) => {
 
@@ -26,10 +28,10 @@ export default function FavuriteItems({ navigation }) {
 
     return (
         <>
-            {favuriteItem.length === 0 ?
+            {products.filter(item => item.isLiked == true).length === 0 ?
                 <View>
-                    <Text style={{ fontWeight: 'bold', textAlign: 'center', marginTop: 300 }}
-                    >No Item to show...!</Text>
+                    <Text style={{ fontWeight: 'bold', textAlign: 'center', marginTop: 300,color:theme.colors.secondary }}
+                    >No Item to show...</Text>
                     <View style={{ marginTop: 10, alignItems: "center" }}>
 
                     </View>

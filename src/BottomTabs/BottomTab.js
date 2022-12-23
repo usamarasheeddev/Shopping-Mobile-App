@@ -9,11 +9,13 @@ import { useCartContext } from '../context/CartContext';
 import { useTheme } from 'react-native-paper';
 import { useFavuriteItemsContext } from '../context/FavuriteItemsContext';
 
+
 const Tab = createMaterialBottomTabNavigator();
 
 
 export default function BottomTab() {
     const { newFavItem, setNewFavItem } = useFavuriteItemsContext()
+    const {cartItems}=useCartContext()
     const theme = useTheme()
     return (
         <Tab.Navigator
@@ -52,7 +54,7 @@ export default function BottomTab() {
             <Tab.Screen name="Cart" component={Cart}
                 options={{
                     tabBarIcon: ({ color }) => <AntDesign name='shoppingcart' color={color} size={24} />,
-                    tabBarBadge: true
+                    tabBarBadge: cartItems.length>0&&cartItems.length
                 }}
 
             />

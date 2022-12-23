@@ -5,9 +5,11 @@ import Icon from 'react-native-vector-icons/Entypo'
 import { useCartContext } from '../../../context/CartContext'
 import { Button } from 'react-native-paper'
 import {Surface} from 'react-native-paper'
+import { useTheme } from 'react-native-paper'
 // import UserCredsScreen from './UserCredsScreen'
 
 export default function UserCart({ navigation }) {
+    const theme =useTheme()
     const { cartItems, decrimentQnt, incrimentQnt, removeItem } = useCartContext()
     const itemsTotal = cartItems.reduce((a, c) => a + (c.price * c.qnt), 0)
 
@@ -35,7 +37,7 @@ export default function UserCart({ navigation }) {
 
                 {cartItems.length === 0 ?
                     <View>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center', marginTop: 300 }}
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', marginTop: 300,color:theme.colors.secondary }}
                         >No Item added to  cart</Text>
                         <View style={{ marginTop: 10, alignItems: "center" }}>
 
