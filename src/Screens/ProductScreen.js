@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default function ProdutcDetailsScreen({ navigation, route }) {
     const { item } = route.params
-    // const { isAuthenticated } = useAuthContext()
+    const { isAuthenticated } = useAuthContext()
 
     //MAKE CALL MODULE
     const makeCall = () => {
