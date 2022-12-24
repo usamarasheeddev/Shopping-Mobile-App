@@ -10,6 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useCartContext } from '../../../context/CartContext'
 import { useTheme } from 'react-native-paper';
 import AuthScreenNavigation from '../../../Screens/AuthScreens/AuthScreenNavigation'
+import SrcollButtonTab from '../../../Components/Horizontal Scroll/SrcollButtonTab'
 // import { MD2Colors } from 'react-native-paper'
 
 export default function Home({ navigation }) {
@@ -48,6 +49,7 @@ export default function Home({ navigation }) {
             :
             <View>
                 <Search />
+                <SrcollButtonTab />
                 <ScrollView >
 
 
