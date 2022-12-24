@@ -1,120 +1,103 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity, ToastAndroid } from 'react-native'
 import React from 'react'
 import { styles } from './style'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useTheme } from 'react-native-paper'
+import { IconButton } from 'react-native-paper'
+import { useProductsContext } from '../context/ProductContext'
+import { useFavuriteItemsContext } from '../context/FavuriteItemsContext'
 
 
 
 export default function ProdutcDetailsScreen({ navigation, route }) {
     const { item } = route.params
-    const { isAuthenticated } = useAuthContext()
+    const [currentItem, setCurrentItem] = React.useState(item)
+    const theme = useTheme()
+    const { products, setProducts } = useProductsContext()
+    const { setNewFavItem } = useFavuriteItemsContext()
+    const [like, setLiked] = React.useState(false)
 
-    //MAKE CALL MODULE
-    const makeCall = () => {
-        // console.log(item.contactNo)
-        const args = {
-            number: item.contactNo, // String value with the number to call
-            prompt: false, // Optional boolean property. Determines if the user should be prompted prior to the call 
-            skipCanOpen: true // Skip the canOpenURL check
-        }
 
-        call(args).catch(console.error)
+    //SET FAVURITE ITEM
+    const handleFavurite = (id) => {
+        setNewFavItem(true)
+
+        setProducts(
+
+            products.map((item) => item.id == id ? { ...item, isLiked: !item.isLiked } : item)
+        )
+        setCurrentItem(
+            {...currentItem, isLiked: !currentItem.isLiked}
+        )
     }
 
+    //show toast message
+    const showToast = (message) => {
+        ToastAndroid.show(message, ToastAndroid.SHORT);
+    };
 
 
-    return (<>
-        {
-            !isAuthenticated ?
-                <AuthScreenNavigator />
+    return (
+        <ScrollView>
 
+            <View style={styles.flexContainer}>
+                <View  >
 
-                : <ScrollView>
+                    <View style={{ position: 'relative' }}>
+                        <IconButton
+                            icon={!currentItem.isLiked ? "heart-outline" : "heart"}
+                            // icon="heart-outline"
+                            iconColor={'red'}
+                            size={20}
+                            onPress={() => {
+                                handleFavurite(item.id)
+                                !currentItem.isLiked ? showToast('Item Liked') : showToast('Item Unliked')
+                            }}
+                            style={{ position: 'absolute', zIndex: 99, top: 3, right: 0, backgroundColor: theme.colors.onSecondary }}
+                        />
 
-                    <View style={styles.flexContainer}>
-                        <View style={{ alignItems: 'center' }}>
-                            <Image sty
-                                source={{
-                                    uri: item.newPost.url
-                                }}
-                                style={{ flex: 1, width: "98%", borderRadius: 20, height: 270, marginTop: 2, resizeMode: 'contain' }}
+                        <Image
+                            source={{
+                                uri: currentItem.url
+                            }}
+                            style={{ flex: 1, width: "100%",  height: 270, marginTop: 2, resizeMode: 'cover' }}
 
-                            />
-                            <View style={styles.textBox}>
-                                <Text style={styles.heading}>{item.title.toLowerCase()
-                                    .split(' ')
-                                    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-                                    .join(' ')}</Text>
-                                {/* <Text style={styles.text}>$200</Text> */}
-                                <Text style={{
-                                    paddingVertical: 14, fontSize: 16, fontWeight: 'bold',
-                                    color: '#40916c'
-                                }}>PKR  {item.price}</Text>
-
-
-
-                                <View style={{
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-around', width: 330, marginTop: 2,
-                                    backgroundColor: '#cfe1b9', padding: 10
-                                }}>
-
-                                    <View style={{ alignItems: 'center' }}>
-                                        <Icon name='bed' color='#40916c' size={28} />
-                                        <Text style={styles.detaileScreenIcons}>Bed Rooms</Text>
-                                        <Text>{item.rooms}</Text>
-
-                                    </View>
-
-                                    <View style={{ alignItems: 'center' }}>
-                                        <Icon name='bathtub-outline' color='#40916c' size={28} />
-                                        <Text style={styles.detaileScreenIcons} >Baths</Text>
-                                        <Text >{item.bath}</Text>
-                                    </View>
-
-                                    <View style={{ alignItems: 'center' }}>
-                                        <Icon name='crop-square' color='#40916c' size={28} />
-                                        <Text style={styles.detaileScreenIcons} >Marlas</Text>
-                                        <Text>{item.area}</Text>
-                                    </View>
-
-
-                                </View>
-
-
-                                <Text style={{
-                                    color: 'black', fontSize: 18, marginTop: 10, marginBottom: 10
-                                }}>Details</Text>
-
-                                <Text style={styles.text}>{item.discription}</Text>
+                        />
+                    </View>
+                    <View style={styles.textBox}>
+                        <Text style={{ paddingVertical: 2, fontSize: 16, fontWeight: 'bold' }}>{currentItem.title.toLowerCase()
+                            .split(' ')
+                            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                            .join(' ')}</Text>
+                        {/* <Text style={styles.text}>$200</Text> */}
+                        <Text style={{
+                            paddingVertical: 1, fontSize: 16, fontWeight: 'bold',
+                            color: theme.colors.primary
+                        }}>PKR  {currentItem.price}</Text>
 
 
 
-                                <Text style={{
-                                    color: 'black', fontSize: 18, marginTop: 20, marginBottom: 10
-                                }}>Contact</Text>
-                                <Text style={styles.text}>{item.contactNo}</Text>
-                                <Text style={styles.text}>{item.email}</Text>
 
 
 
-                                <View style={styles.buttonBox}>
-                                    <TouchableOpacity style={styles.button}
-                                    onPress={() => makeCall()}
-                                    >
-                                        <Text style={{ textAlign: "center", color: 'white' }}> Contact </Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
+                        <Text style={{
+                            color: 'black', fontSize: 18, marginTop: 20, marginBottom: 10
+                        }}>Details</Text>
 
-
-                        </View>
+                        <Text style={styles.text}>{currentItem.discription}</Text>
 
 
 
 
                     </View>
 
-                </ScrollView>
-        }</>)
+
+                </View>
+
+
+
+
+            </View>
+
+        </ScrollView>)
 }

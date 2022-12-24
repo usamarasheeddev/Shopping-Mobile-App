@@ -1,4 +1,4 @@
-import { View, Text, TouchableHighlight } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
 import { Avatar } from 'react-native-paper';
@@ -30,7 +30,7 @@ export default function CuttomDrawr(props) {
         </DrawerContentScrollView>
       </View>
       <View style={{ flex: .1, m: 2 }}>
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => dispatch({ type: 'LOGOUT' })}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, marginBottom: 10 }}>
@@ -43,9 +43,9 @@ export default function CuttomDrawr(props) {
             </Text>
 
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
-        <TouchableHighlight style={{ marginTop: 7 }}
+        <TouchableOpacity style={{ marginTop: 7 }}
           onPress={() => alert('share')}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, marginBottom: 20 }}>
@@ -58,7 +58,7 @@ export default function CuttomDrawr(props) {
             </Text>
 
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
       </View>
     </View>
