@@ -32,7 +32,7 @@ export default function MyDrawer() {
           },
           drawerInactiveTintColor: theme.colors.secondary,
           drawerActiveTintColor: theme.colors.primary,
-          headerShown: false,
+          // headerShown: false,
 
 
         }}

@@ -49,9 +49,9 @@ export default function Home({ navigation }) {
             :
             <View>
                 <Search />
-                <SrcollButtonTab />
-                <ScrollView >
 
+                <ScrollView >
+                <SrcollButtonTab />
 
                     <View style={styles.flexContainer}>
                         {/* <View style={{ width: "100%" }}>
